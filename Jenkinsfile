@@ -13,9 +13,7 @@ pipeline {
             steps{
                 sh "gradle bootBuildImage --imageName=loljoa/betting_api:0.0.1-SNAPSHOT"
             }
-
         }
-
         stage("Docker login") {
             environment {
                 DOCKER_HUB_LOGIN = credentials('docker-hub')
@@ -25,10 +23,14 @@ pipeline {
             }
         }
         stage("Image push") {
-            sh "docker push loljoa/betting_api:0.0.1-SNAPSHOT"
+            steps{
+                sh "docker push loljoa/betting_api:0.0.1-SNAPSHOT"
+            }
         }
         stage("Resource cleanup") {
-            sh "docker image prune -a"
+            steps{
+                sh "docker image prune -a"
+            }
         }
     }
 }
