@@ -4,29 +4,30 @@ pipeline {
     tools{
         gradle 'gradle-7.4.1'
     }
-    nodes {
-        stage('Clone repository') {
-                checkout scm
-        }
+    triggers{
+        pollSCM('*/5 * * * *')
+    }
+
+    stages{
         stage("Build image") {
-            sh "gradle bootBuildImage --imageName=loljoa/betting_api:0.0.1-SNAPSHOT"
+            steps{
+                sh "gradle bootBuildImage --imageName=loljoa/betting_api:0.0.1-SNAPSHOT"
+            }
+
         }
 
         stage("Docker login") {
             environment {
-                  DOCKER_HUB_LOGIN = credentials('docker-hub')
+                DOCKER_HUB_LOGIN = credentials('docker-hub')
             }
-            sh 'docker login --username=$DOCKER_HUB_LOGIN_USR --password=$DOCKER_HUB_LOGIN_PSW'
-        }
-
+            steps{
+                sh 'docker login --username=$DOCKER_HUB_LOGIN_USR --password=$DOCKER_HUB_LOGIN_PSW'
+            }
         stage("Image push") {
             sh "docker push loljoa/betting_api:0.0.1-SNAPSHOT"
         }
-
         stage("Resource cleanup") {
             sh "docker image prune -a"
         }
     }
-
-
 }
