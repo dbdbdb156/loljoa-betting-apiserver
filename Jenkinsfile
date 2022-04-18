@@ -1,4 +1,7 @@
 node {
+    tools{
+        gradle "gradle-7.4.1"
+    }
 
     stage('Clone repository') {
         checkout scm
