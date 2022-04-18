@@ -1,7 +1,5 @@
 node {
-    tools{
-        gradle 'gradle'
-    }
+
     stage('Clone repository') {
         checkout scm
     }
