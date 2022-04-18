@@ -5,6 +5,7 @@ node {
     }
 
     stage("Build image") {
+        gradle('gradle-7.4.1')
         sh "gradle bootBuildImage --imageName=loljoa/betting_api:0.0.1-SNAPSHOT"
     }
 
