@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     tools{
+        jdk 'openjdk17'
         gradle 'gradle-7.4.1'
     }
     triggers{
