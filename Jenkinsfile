@@ -2,16 +2,14 @@ pipeline {
     agent any
 
     tools{
-        gradle "gradle-7.4.1"
+        gradle 'gradle-7.4.1'
     }
     stages{
         stage('Clone repository') {
                 checkout scm
-            }
+        }
         stage("Build image") {
-            withGradle(){
-                sh "gradle bootBuildImage --imageName=loljoa/betting_api:0.0.1-SNAPSHOT"
-            }
+            sh "gradle bootBuildImage --imageName=loljoa/betting_api:0.0.1-SNAPSHOT"
         }
 
         stage("Docker login") {
