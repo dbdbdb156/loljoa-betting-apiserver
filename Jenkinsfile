@@ -4,7 +4,7 @@ pipeline {
     tools{
         gradle 'gradle-7.4.1'
     }
-    node {
+    nodes {
         stage('Clone repository') {
                 checkout scm
         }
