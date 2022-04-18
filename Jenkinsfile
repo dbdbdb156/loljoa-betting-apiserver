@@ -23,6 +23,7 @@ pipeline {
             steps{
                 sh 'docker login --username=$DOCKER_HUB_LOGIN_USR --password=$DOCKER_HUB_LOGIN_PSW'
             }
+        }
         stage("Image push") {
             sh "docker push loljoa/betting_api:0.0.1-SNAPSHOT"
         }
