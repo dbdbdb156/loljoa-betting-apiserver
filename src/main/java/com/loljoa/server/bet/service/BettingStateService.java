@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.LockModeType;
 import java.sql.SQLException;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,7 +28,6 @@ public class BettingStateService {
     @Retryable(value = SQLException.class, backoff = @Backoff(delay = 500))
     @Transactional
     public Long makeBettingState(Account account, BettingGame gamedata, Long point){
-
 
         // BettingChoice 생성
         BettingChoice bettingChoice = BettingChoice.createBettingChoice(gamedata);

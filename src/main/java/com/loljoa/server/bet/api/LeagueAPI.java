@@ -53,6 +53,7 @@ public class LeagueAPI {
         String fullURL = SCHEDULE_URL+"api/league/schedule/leagueid/"+leagueId;
 
         // msa 간 통신 - RESTFUL 통신
+        // msa 간 통신
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> result = restTemplate.getForEntity(fullURL,String.class);
 
