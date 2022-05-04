@@ -1,0 +1,21 @@
+---
+
+spring:
+  config:
+    activate:
+      on-profile:
+        - prod
+  application:
+    name: LoLjoa-bet-server
+
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${JDBC_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
